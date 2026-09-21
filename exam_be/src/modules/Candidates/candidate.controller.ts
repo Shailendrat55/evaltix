@@ -64,6 +64,7 @@ export const startExamController = async (
       "Exam has not started yet",
       "Unable to start exam. It may already be started.",
     ];
+    
 
     const isClientError =
       clientErrors.includes(error.message) ||
