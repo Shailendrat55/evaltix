@@ -1,0 +1,58 @@
+// questions.js
+const mcqQuestions = [
+  { id: 1, type: "mcq", question: "Which React hook is used to manage local state?", options: ["useState", "useEffect", "useContext", "useReducer"], answer: "useState" },
+  { id: 2, type: "mcq", question: "Which hook is used to run side-effects in React?", options: ["useState", "useEffect", "useMemo", "useRef"], answer: "useEffect" },
+  { id: 3, type: "mcq", question: "Which data structure uses FIFO?", options: ["Stack", "Queue", "Tree", "Graph"], answer: "Queue" },
+  { id: 4, type: "mcq", question: "Which JS method converts JSON string to object?", options: ["JSON.parse", "JSON.stringify", "Object.assign", "JSON.convert"], answer: "JSON.parse" },
+  { id: 5, type: "mcq", question: "Which hook is used to reference a DOM element?", options: ["useState", "useRef", "useEffect", "useMemo"], answer: "useRef" },
+  { id: 6, type: "mcq", question: "Which data structure is best for implementing a stack?", options: ["Array", "Queue", "Linked List", "Heap"], answer: "Array" },
+  { id: 7, type: "mcq", question: "What is the default value of uninitialized variable in JS?", options: ["0", "null", "undefined", "NaN"], answer: "undefined" },
+  { id: 8, type: "mcq", question: "Which SQL command fetches data from table?", options: ["SELECT", "INSERT", "DELETE", "UPDATE"], answer: "SELECT" },
+  { id: 9, type: "mcq", question: "Which protocol is used for secure communication?", options: ["HTTP", "FTP", "HTTPS", "SMTP"], answer: "HTTPS" },
+  { id: 10, type: "mcq", question: "Which hook memoizes a computed value?", options: ["useCallback", "useEffect", "useMemo", "useState"], answer: "useMemo" },
+  { id: 11, type: "mcq", question: "Which data structure is used in BFS traversal?", options: ["Stack", "Queue", "Linked List", "Heap"], answer: "Queue" },
+  { id: 12, type: "mcq", question: "Which data structure is used in DFS traversal?", options: ["Stack", "Queue", "Linked List", "Heap"], answer: "Stack" },
+  { id: 13, type: "mcq", question: "Which keyword creates a new object in JS?", options: ["new", "this", "Object.create", "prototype"], answer: "new" },
+  { id: 14, type: "mcq", question: "Which algorithm is stable?", options: ["QuickSort", "MergeSort", "HeapSort", "SelectionSort"], answer: "MergeSort" },
+  { id: 15, type: "mcq", question: "Which hook prevents unnecessary re-renders of child component?", options: ["useCallback", "useMemo", "useEffect", "useState"], answer: "useCallback" },
+  { id: 16, type: "mcq", question: "Which data type is not primitive in JS?", options: ["Number", "Boolean", "Object", "String"], answer: "Object" },
+  { id: 17, type: "mcq", question: "Which SQL command removes all data from a table?", options: ["DELETE", "DROP", "TRUNCATE", "REMOVE"], answer: "TRUNCATE" },
+  { id: 18, type: "mcq", question: "Which hook is used for caching values in React?", options: ["useMemo", "useEffect", "useState", "useRef"], answer: "useMemo" },
+  { id: 19, type: "mcq", question: "Which JS array method adds elements to end?", options: ["push", "pop", "shift", "unshift"], answer: "push" },
+  { id: 20, type: "mcq", question: "Which JS array method removes first element?", options: ["push", "pop", "shift", "unshift"], answer: "shift" },
+  { id: 21, type: "mcq", question: "Which keyword prevents variable redeclaration in JS?", options: ["let", "var", "const", "All"], answer: "let" },
+  { id: 22, type: "mcq", question: "Which hook is used for side-effects?", options: ["useEffect", "useState", "useMemo", "useCallback"], answer: "useEffect" },
+  { id: 23, type: "mcq", question: "What does CSS stand for?", options: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], answer: "Cascading Style Sheets" },
+  { id: 24, type: "mcq", question: "Which tag is used for JS in HTML?", options: ["<js>", "<script>", "<javascript>", "<code>"], answer: "<script>" },
+  { id: 25, type: "mcq", question: "Which operator is used for strict equality in JS?", options: ["==", "===", "=", "!=="], answer: "===" }
+];
+
+const codingQuestions = [
+  { id: 26, type: "code", question: "Reverse a String", description: "Write function solution(input) that reverses a string", testCases: [ { input: "abc", output: "cba" }, { input: "hello", output: "olleh" } ] },
+  { id: 27, type: "code", question: "Check Even Number", description: "Return true if number is even else false", testCases: [ { input: 4, output: true }, { input: 7, output: false } ] },
+  { id: 28, type: "code", question: "Sum of Array", description: "Return sum of all numbers in array", testCases: [ { input: [1,2,3], output:6 }, { input: [5,5], output:10 } ] },
+  { id: 29, type: "code", question: "Find Maximum", description: "Return largest number", testCases: [ { input: [3,7,2], output:7 }, { input: [10,5], output:10 } ] },
+  { id: 30, type: "code", question: "Palindrome Check", description: "Return true if string is palindrome", testCases: [ { input: "madam", output:true }, { input:"hello", output:false } ] },
+  { id: 31, type: "code", question: "Fibonacci Number", description: "Return nth Fibonacci number (0-indexed)", testCases: [ { input:0, output:0 }, { input:5, output:5 }, { input:10, output:55 } ] },
+  { id: 32, type: "code", question: "Factorial of Number", description: "Return factorial of input number", testCases: [ { input:0, output:1 }, { input:4, output:24 } ] },
+  { id: 33, type: "code", question: "Count Vowels in String", description: "Return number of vowels in string", testCases: [ { input:"hello", output:2 }, { input:"OpenAI", output:3 } ] },
+  { id: 34, type: "code", question: "Sum of Digits", description: "Return sum of all digits of number", testCases: [ { input:123, output:6 }, { input:409, output:13 } ] },
+  { id: 35, type: "code", question: "Merge Two Sorted Arrays", description: "Return merged sorted array", testCases: [ { input:[[1,3,5],[2,4,6]], output:[1,2,3,4,5,6] } ] },
+  { id: 36, type: "code", question: "Check Prime Number", description: "Return true if prime else false", testCases: [ { input:5, output:true }, { input:4, output:false } ] },
+  { id: 37, type: "code", question: "Remove Duplicates from Array", description: "Return array with unique elements", testCases: [ { input:[1,2,2,3], output:[1,2,3] } ] },
+  { id: 38, type: "code", question: "Capitalize Words", description: "Capitalize first letter of each word", testCases: [ { input:"hello world", output:"Hello World" } ] },
+  { id: 39, type: "code", question: "Find Minimum", description: "Return smallest number in array", testCases: [ { input:[3,7,2], output:2 } ] },
+  { id: 40, type: "code", question: "Square Numbers", description: "Return array of squares of numbers", testCases: [ { input:[1,2,3], output:[1,4,9] } ] },
+  { id: 41, type: "code", question: "Reverse Array", description: "Return array reversed", testCases: [ { input:[1,2,3], output:[3,2,1] } ] },
+  { id: 42, type: "code", question: "Count Words", description: "Return number of words in string", testCases: [ { input:"Hello world", output:2 } ] },
+  { id: 43, type: "code", question: "Sum of Positive Numbers", description: "Return sum of positive numbers in array", testCases: [ { input:[1,-2,3,-4], output:4 } ] },
+  { id: 44, type: "code", question: "Check Armstrong Number", description: "Return true if number is Armstrong", testCases: [ { input:153, output:true }, { input:123, output:false } ] },
+  { id: 45, type: "code", question: "Find Index", description: "Return index of element in array or -1", testCases: [ { input:[[1,2,3],2], output:1 }, { input:[[1,2,3],4], output:-1 } ] },
+  { id: 46, type: "code", question: "Concat Two Arrays", description: "Return concatenated array", testCases: [ { input:[[1,2],[3,4]], output:[1,2,3,4] } ] },
+  { id: 47, type: "code", question: "Reverse Words in String", description: "Return string with words reversed", testCases: [ { input:"hello world", output:"world hello" } ] },
+  { id: 48, type: "code", question: "Square Even Numbers", description: "Return array of squares of even numbers only", testCases: [ { input:[1,2,3,4], output:[4,16] } ] },
+  { id: 49, type: "code", question: "Count Character Occurrences", description: "Return count of specific character in string", testCases: [ { input:["hello",'l'], output:2 } ] },
+  { id: 50, type: "code", question: "Check Leap Year", description: "Return true if leap year", testCases: [ { input:2020, output:true }, { input:2021, output:false } ] }
+];
+
+export default [...mcqQuestions, ...codingQuestions];

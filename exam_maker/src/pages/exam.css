@@ -1,0 +1,171 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px 32px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+header h2 {
+  margin: 0;
+  color: #111827;
+}
+
+header span {
+  background: #111827;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* QUESTION */
+h3 {
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+/* MCQ OPTIONS */
+.option {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option:hover {
+  background: #f9fafb;
+  border-color: #2563eb;
+}
+
+.option input {
+  margin-right: 10px;
+}
+
+/* CODE SECTION */
+textarea {
+  width: 100%;
+  min-height: 220px;
+  background: #0f172a;
+  color: #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  outline: none;
+  border: 1px solid #1e293b;
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* BUTTONS */
+button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* ACTION BUTTONS */
+button.run {
+  background: #2563eb;
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+button.run:hover {
+  background: #1d4ed8;
+}
+
+button.submit {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+button.submit:hover {
+  background: #15803d;
+}
+
+/* OUTPUT */
+pre {
+  background: #020617;
+  color: #e5e7eb;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+/* CENTER */
+.center {
+  text-align: center;
+  margin-top: 80px;
+  color: #16a34a;
+}
+
+/* Anti-copy */
+.no-copy {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.no-copy textarea {
+  user-select: text; /* allow typing inside code editor */
+}
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0 0 20px;
+}
