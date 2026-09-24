@@ -268,9 +268,14 @@ export const updateAssignment = async (assignmentId, data) => {
   }
 };
 
-export const getallCandidates = async () => {
+export const getallCandidates = async (page = 1, limit = 10) => {
   try {
-    const response = await api.get("/api/v1/admin/exam-assignments");
+    const response = await api.get("/api/v1/admin/exam-assignments", {
+      params: {
+        page,
+        limit,
+      },
+    });
 
     return response.data;
   } catch (error) {

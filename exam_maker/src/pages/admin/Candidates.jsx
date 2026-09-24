@@ -280,7 +280,7 @@ function UploadExcelModal({ onClose, onUpload }) {
         </a>
 
         <div
-          className={`border-2 border-dashed rounded-xl px-4 py-8 flex items-center justify-center cursor-pointer transition-colors bg-[#f9f8f4] ${dragOver ? "border-[#b3781f] bg-[#fbeed9]" : "border-[#e5e1d5] hover:border-[#b3781f] hover:bg-[#fbeed9]" 
+          className={`border-2 border-dashed rounded-xl px-4 py-8 flex items-center justify-center cursor-pointer transition-colors bg-[#f9f8f4] ${dragOver ? "border-[#b3781f] bg-[#fbeed9]" : "border-[#e5e1d5] hover:border-[#b3781f] hover:bg-[#fbeed9]"
             }`}
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
@@ -351,25 +351,38 @@ export default function CandidatesPage() {
   const [addingCandidate, setAddingCandidate] = useState(false);
   const [editingCandidate, setEditingCandidate] = useState(null);
   const [updatingAssignment, setUpdatingAssignment] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalCandidates, setTotalCandidates] = useState(0);
 
   // Only fetch candidates on initial page render.
   useEffect(() => {
-  async function loadCandidates() {
-    try {
-      const response = await getallCandidates();
-      const candidateList = response?.assignments || [];
+    async function loadCandidates() {
+      try {
+        setLoading(true);
+        setError("");
 
-      setCandidates(candidateList.map(mapCandidate));
-    } catch (fetchError) {
-      console.error("Error while fetching candidates", fetchError);
-      setError("Unable to load candidates.");
-    } finally {
-      setLoading(false);
+        const response = await getallCandidates(page, limit);
+
+        console.log("Paginated response:", response);
+
+        const candidateList = response?.assignments || [];
+
+        setCandidates(candidateList.map(mapCandidate));
+
+        setTotalPages(response?.totalPages || 1);
+        setTotalCandidates(response?.total || 0);
+      } catch (fetchError) {
+        console.error("Error while fetching candidates", fetchError);
+        setError("Unable to load candidates.");
+      } finally {
+        setLoading(false);
+      }
     }
-  }
 
-  loadCandidates();
-}, []);
+    loadCandidates();
+  }, [page, limit]);
 
   // Fetch exams lazily, only the first time the Add Candidate modal is opened.
   async function openAddModal() {
@@ -566,6 +579,7 @@ export default function CandidatesPage() {
               <th className="text-left p-3 font-medium">Exam</th>
               <th className="text-left p-3 font-medium">Status</th>
               <th className="text-left p-3 font-medium">Registered</th>
+              <th className="text-left p-3 font-medium">Actions</th>
               <th className="p-3"></th>
             </tr>
           </thead>
@@ -651,6 +665,33 @@ export default function CandidatesPage() {
             ))}
           </tbody>
         </table>
+        <div className="flex items-center justify-between mt-6">
+          <div className="text-sm text-gray-500">
+            Showing {candidates.length} of {totalCandidates} candidates
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              disabled={page === 1 || loading}
+              onClick={() => setPage((prev) => prev - 1)}
+              className="px-4 py-2 border rounded-lg disabled:opacity-50"
+            >
+              Previous
+            </button>
+
+            <span className="px-3 text-sm">
+              Page {page} of {totalPages}
+            </span>
+
+            <button
+              disabled={page >= totalPages || loading}
+              onClick={() => setPage((prev) => prev + 1)}
+              className="px-4 py-2 border rounded-lg disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
 
       {(showAddModal || editingCandidate) && (

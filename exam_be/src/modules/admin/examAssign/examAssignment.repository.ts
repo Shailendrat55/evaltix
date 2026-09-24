@@ -283,7 +283,13 @@ export async function deleteAssignment(
   return result.rowCount === 1;
 }
 
-export async function getallCandidates() {
+export async function getallCandidates(
+  page = 1,
+  limit = 10
+) {
+  const offset = (page - 1) * limit;
+
+  // Get paginated candidates
   const { rows } = await pool.query(
     `
     SELECT
@@ -312,11 +318,27 @@ export async function getallCandidates() {
     WHERE u.role = 'CANDIDATE'
 
     ORDER BY u.created_at DESC
+
+    LIMIT $1
+    OFFSET $2
+    `,
+    [limit, offset]
+  );
+
+  // Get total number of candidates
+  const { rows: countRows } = await pool.query(
+    `
+    SELECT COUNT(*) AS total
+    FROM users
+    WHERE role = 'CANDIDATE'
     `
   );
 
-  // shape each row so the frontend gets a nested `exam` object and a real assignmentId
-  return rows.map((r) => ({
+  const total = Number(countRows[0].total);
+
+  const totalPages = Math.ceil(total / limit);
+
+  const assignments = rows.map((r) => ({
     id: r.id,
     name: r.name,
     email: r.email,
@@ -325,12 +347,23 @@ export async function getallCandidates() {
     createdAt: r.createdAt,
     assignmentId: r.assignmentId,
     exam: r.examId
-      ? { id: r.examId, name: r.examName }
+      ? {
+          id: r.examId,
+          name: r.examTitle,
+        }
       : null,
-      examTitle:r.examTitle,
+    examTitle: r.examTitle,
     assignmentStatus: r.assignmentStatus,
     assignedAt: r.assignedAt,
   }));
+
+  return {
+    assignments,
+    page,
+    limit,
+    total,
+    totalPages,
+  };
 }
 
 export async function startAssignment(

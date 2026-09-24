@@ -209,8 +209,14 @@ export async function deleteAssignment(id: string) {
   return assignmentRepository.deleteAssignment(id);
 }
 
-export async function getAllAssignments() {
-  return assignmentRepository.getallCandidates();
+export async function getAllAssignments(
+  page = 1,
+  limit = 10
+) {
+  return assignmentRepository.getallCandidates(
+    page,
+    limit
+  );
 }
 
 // export async function startExam(

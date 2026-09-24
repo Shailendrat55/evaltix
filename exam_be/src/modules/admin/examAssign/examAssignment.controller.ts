@@ -377,12 +377,27 @@ export async function getAllAssignments(
   res: Response
 ) {
   try {
-    const assignments =
-      await assignmentService.getAllAssignments();
+    const page = Math.max(
+      Number(req.query.page) || 1,
+      1
+    );
 
-    return res.status(200).json({
-      assignments,
-    });
+    const limit = Math.min(
+      Math.max(
+        Number(req.query.limit) || 10,
+        1
+      ),
+      100
+    );
+
+    const result =
+      await assignmentService.getAllAssignments(
+        page,
+        limit
+      );
+
+    return res.status(200).json(result);
+
   } catch (error) {
     console.error(
       "Get all assignments error:",
